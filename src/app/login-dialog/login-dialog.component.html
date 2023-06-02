@@ -1,15 +1,19 @@
-<h2
-  mat-dialog-title
-  align="center"
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="onLogin()"
 >
-  Sign In
-</h2>
-<div mat-dialog-content>
-  <form [formGroup]="loginForm">
+  <h2
+    mat-dialog-title
+    align="center"
+  >
+    Sign In
+  </h2>
+  <div mat-dialog-content>
     <mat-form-field class="form__controller">
       <mat-label>Login</mat-label>
       <input
-        formControlName="login"
+        type="email"
+        formControlName="email"
         matInput
       >
     </mat-form-field>
@@ -21,25 +25,33 @@
         matInput
       >
     </mat-form-field>
-  </form>
-</div>
-<div
-  mat-dialog-actions
-  align="end"
-  class="form__actions"
->
-  <button
-    mat-raised-button
-    mat-dialog-close
+    <mat-error>{{ errorMessage }}</mat-error>
+  </div>
+  <div
+    *ngIf="!isLoading"
+    mat-dialog-actions
+    align="end"
+    class="form__actions"
   >
-    Cancel
-  </button>
-  <button
-    type="submit"
-    [disabled]="loginForm.invalid"
-    mat-raised-button
-    color="primary"
+    <button
+      mat-raised-button
+      mat-dialog-close
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      [disabled]="loginForm.invalid"
+      mat-raised-button
+      color="primary"
+    >
+      Sign In
+    </button>
+  </div>
+  <div
+    *ngIf="isLoading"
+    class="form__spinner-container"
   >
-    Sign In
-  </button>
-</div>
+    <mat-spinner [diameter]="36"></mat-spinner>
+  </div>
+</form>
