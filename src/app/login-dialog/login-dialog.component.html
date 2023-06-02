@@ -5,14 +5,21 @@
   Sign In
 </h2>
 <div mat-dialog-content>
-  <form>
+  <form [formGroup]="loginForm">
     <mat-form-field class="form__controller">
       <mat-label>Login</mat-label>
-      <input matInput>
+      <input
+        formControlName="login"
+        matInput
+      >
     </mat-form-field>
     <mat-form-field class="form__controller">
       <mat-label>Password</mat-label>
-      <input matInput>
+      <input
+        type="password"
+        formControlName="password"
+        matInput
+      >
     </mat-form-field>
   </form>
 </div>
@@ -28,7 +35,8 @@
     Cancel
   </button>
   <button
-    disabled
+    type="submit"
+    [disabled]="loginForm.invalid"
     mat-raised-button
     color="primary"
   >
