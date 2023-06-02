@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { LoginDialogService } from './login-dialog.service';
 
@@ -13,12 +14,16 @@ export class LoginDialogComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
 
-  constructor(private loginService: LoginDialogService) {
+  constructor(private loginDialogRef: MatDialogRef<LoginDialogComponent>,
+              private loginService: LoginDialogService) {
   }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      'email': new FormControl(null, Validators.required),
+      'email': new FormControl(null, [
+        Validators.required,
+        Validators.email
+      ]),
       'password': new FormControl(null, Validators.required)
     });
   }
@@ -33,11 +38,7 @@ export class LoginDialogComponent implements OnInit {
     this.isLoading = true
 
     this.loginService.login(email, password).subscribe(
-      responseData => {
-        this.isLoading = false;
-        this.errorMessage = '';
-        this.loginForm.reset();
-      },
+      () => this.loginDialogRef.close(),
       error => {
         this.isLoading = false;
         this.errorMessage = error;

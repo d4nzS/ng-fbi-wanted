@@ -1,1 +1,10 @@
-<button (click)="onOpenLoginDialog()">Login</button>
+<button
+  *ngIf="!isAuthenticated"
+  (click)="onOpenLoginDialog()"
+>
+  Login
+</button>
+<button
+  *ngIf="isAuthenticated"
+  (click)="onLogout()"
+>Logout</button>
