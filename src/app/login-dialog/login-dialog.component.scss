@@ -1,0 +1,14 @@
+.form {
+  &__controller {
+    width: 100%;
+  }
+
+  &__actions {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  &__spinner-container {
+    padding: 0.5rem 1.5rem;
+  }
+}
