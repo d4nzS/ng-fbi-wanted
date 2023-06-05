@@ -1,0 +1,27 @@
+<header>
+  <mat-toolbar color="primary">
+    <span>My App</span>
+    <span class="header__spacing"></span>
+    <ng-template [ngIf]="isAuthenticated">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <span mat-menu-item>{{ userEmail }}</span>
+        <button
+          (click)="onLogout()"
+          mat-menu-item
+        >
+          Logout
+        </button>
+      </mat-menu>
+    </ng-template>
+    <button
+      *ngIf="!isAuthenticated"
+      (click)="onOpenLoginDialog()"
+      mat-button
+    >
+      Login
+    </button>
+  </mat-toolbar>
+</header>
