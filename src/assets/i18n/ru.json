@@ -1,0 +1,11 @@
+{
+  "Auth.Login": "Войти",
+  "Auth.SignIn": "Вход",
+  "Auth.Password": "Пароль",
+  "Auth.Cancel": "Отмена",
+  "Auth.Logout": "Выйти",
+  "AuthError.EmailNotFound": "Такого email не существует",
+  "AuthError.InvalidPassword": "Неверный пароль.",
+  "AuthError.Unknown": "Неизвестная ошибка.",
+  "Language": "Язык"
+}

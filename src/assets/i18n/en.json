@@ -1,0 +1,11 @@
+{
+  "Auth.Login": "Login",
+  "Auth.SignIn": "Sign In",
+  "Auth.Password": "Password",
+  "Auth.Cancel": "Cancel",
+  "Auth.Logout": "Logout",
+  "AuthError.EmailNotFound": "This email does not exist.",
+  "AuthError.InvalidPassword": "This password is not correct.",
+  "AuthError.Unknown": "An unknown error occurred.",
+  "Language": "Language"
+}
