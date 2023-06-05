@@ -4,19 +4,13 @@ import {
   BehaviorSubject,
   catchError,
   Observable,
-  tap,
   throwError
 } from 'rxjs';
 
-import { User } from './user.model';
+import { LoginResponseData } from '../../shared/interfaces/login-response-data';
+import { User } from '../../shared/interfaces/user';
 import { environment } from '../../enviroments/environment';
-
-interface LoginResponseData {
-  idToken: string;
-  email: string;
-  localId: string;
-  expiresIn: string;
-}
+import { AUTH_ERROR_MESSAGES } from '../../shared/constants/auth-error-messages';
 
 const USER_DATA_KEY = 'udk';
 
@@ -34,39 +28,20 @@ export class LoginDialogService {
       email,
       password,
       returnSecureToken: true
-    }).pipe(
-      catchError(this.handleError),
-      tap(resData => {
-        const user = new User(
-          resData.email,
-          resData.localId,
-          resData.idToken,
-          Date.now() + +resData.expiresIn * 1000
-        );
-
-        this.handleAuth(user);
-      })
-    );
+    }).pipe(catchError(this.handleError));
   }
 
   autoLogin(): void {
-    const userData = JSON.parse(localStorage.getItem(USER_DATA_KEY));
+    const loadedUser = JSON.parse(localStorage.getItem(USER_DATA_KEY));
 
-    if (!userData) {
+    if (!loadedUser) {
       return;
     }
 
-    const loadedUser = new User(
-      userData.email,
-      userData.id,
-      userData._token,
-      userData._tokenExpirationDate
-    )
-
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
-    } else {
+    if (!loadedUser.tokenExpirationDate || Date.now() > loadedUser.tokenExpirationDate) {
       this.logout();
+    } else {
+      this.user.next(loadedUser)
     }
   }
 
@@ -75,24 +50,12 @@ export class LoginDialogService {
     localStorage.removeItem(USER_DATA_KEY);
   }
 
-  private handleAuth(user: User): void {
+  handleAuth(user: User): void {
     this.user.next(user);
     localStorage.setItem(USER_DATA_KEY, JSON.stringify(user));
   }
 
   private handleError(errorRes: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'An unknown error occurred!';
-
-    switch (errorRes.error.error?.message) {
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exist.';
-        break;
-
-      case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct.';
-        break;
-    }
-
-    return throwError(errorMessage);
+    return throwError(AUTH_ERROR_MESSAGES[errorRes.error.error?.message] ?? AUTH_ERROR_MESSAGES.UNKNOWN_ERROR);
   }
 }

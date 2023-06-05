@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 import { LoginDialogService } from '../login-dialog/login-dialog.service';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
@@ -13,25 +13,29 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   userEmail: string;
-  userSub: Subscription;
+
+  private unsubscribe = new Subject<void>();
 
   constructor(private loginService: LoginDialogService,
               private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.userSub = this.loginService.user.subscribe(user => {
-      if (user) {
-        this.isAuthenticated = true;
-        this.userEmail = user.email;
-      } else {
-        this.isAuthenticated = false;
-      }
-    });
+    this.loginService.user
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(user => {
+        if (user) {
+          this.isAuthenticated = true;
+          this.userEmail = user.email;
+        } else {
+          this.isAuthenticated = false;
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    this.userSub.unsubscribe();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   onOpenLoginDialog(): void {

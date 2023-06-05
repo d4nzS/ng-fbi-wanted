@@ -38,7 +38,15 @@ export class LoginDialogComponent implements OnInit {
     this.isLoading = true
 
     this.loginService.login(email, password).subscribe(
-      () => this.loginDialogRef.close(),
+      resData => {
+        this.loginService.handleAuth({
+          email: resData.email,
+          id: resData.localId,
+          token: resData.idToken,
+          tokenExpirationDate: Date.now() + +resData.expiresIn * 1000
+        });
+        this.loginDialogRef.close();
+      },
       error => {
         this.isLoading = false;
         this.errorMessage = error;
