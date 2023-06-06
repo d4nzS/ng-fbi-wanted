@@ -1,5 +1,5 @@
 export const AUTH_ERROR_MESSAGES = {
-  EMAIL_NOT_FOUND: 'AuthError.EmailNotFound',
-  INVALID_PASSWORD: 'AuthError.InvalidPassword',
-  UNKNOWN_ERROR: 'AuthError.Unknown'
+  EMAIL_NOT_FOUND: 'Auth.Error.EmailNotFound',
+  INVALID_PASSWORD: 'Auth.Error.InvalidPassword',
+  UNKNOWN_ERROR: 'Auth.Error.Unknown'
 };
