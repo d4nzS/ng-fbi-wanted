@@ -8,7 +8,18 @@ import { APP_URLS } from '../../shared/constants/app-urls';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent {
-  homeUrl = `/${APP_URLS.HOME}`;
-  fbiWantedUrl = `/${APP_URLS.FBI_WANTED}`;
-  settingsUrl = `/${APP_URLS.SETTINGS}`;
+  appLinks = [
+    {
+      path: APP_URLS.HOME,
+      text: 'Sidebar.HomeLink'
+    },
+    {
+      path: APP_URLS.FBI_WANTED,
+      text: 'FBI Wanted'
+    },
+    {
+      path: APP_URLS.SETTINGS,
+      text: 'Sidebar.SettingsLink'
+    }
+  ];
 }
