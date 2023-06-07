@@ -1,0 +1,10 @@
+<main class="main">
+  <button
+    *ngIf="!isAuthenticated"
+    (click)="onOpenLoginDialog()"
+    mat-raised-button
+    color="primary"
+  >
+    {{ 'Auth.Login' | translate }}
+  </button>
+</main>

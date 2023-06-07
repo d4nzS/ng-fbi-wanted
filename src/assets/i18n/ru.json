@@ -1,0 +1,17 @@
+{
+  "Auth": {
+    "Login": "Войти",
+    "SignIn": "Вход",
+    "Password": "Пароль",
+    "Cancel": "Отмена",
+    "Logout": "Выйти",
+    "Error": {
+      "EmailNotFound": "Такого email не существует",
+      "InvalidPassword": "Неверный пароль.",
+      "Unknown": "Неизвестная ошибка."
+    }
+  },
+  "Language": "Язык",
+  "Sidebar.HomeLink": "Главная",
+  "Sidebar.SettingsLink": "Настройки"
+}

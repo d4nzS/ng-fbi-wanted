@@ -1,0 +1,11 @@
+<mat-form-field (click)="$event.stopPropagation()">
+  <mat-label>{{ 'Language' | translate }}</mat-label>
+  <mat-select
+    [(value)]="selectedLang"
+    (selectionChange)="onChangeLanguage($event.value)"
+  >
+    <mat-option *ngFor="let language of languages" [value]="language">
+      {{language}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

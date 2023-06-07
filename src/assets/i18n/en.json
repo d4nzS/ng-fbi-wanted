@@ -1,0 +1,17 @@
+{
+  "Auth": {
+    "Login": "Login",
+    "SignIn": "Sign In",
+    "Password": "Password",
+    "Cancel": "Cancel",
+    "Logout": "Logout",
+    "Error": {
+      "EmailNotFound": "This email does not exist.",
+      "InvalidPassword": "This password is not correct.",
+      "Unknown": "An unknown error occurred."
+    }
+  },
+  "Language": "Language",
+  "Sidebar.HomeLink": "Home",
+  "Sidebar.SettingsLink": "Settings"
+}

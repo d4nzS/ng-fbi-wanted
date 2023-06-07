@@ -1,0 +1,11 @@
+<mat-list>
+  <mat-list-item *ngFor="let link of appLinks">
+    <a
+      [routerLink]="['/', link.path]"
+      routerLinkActive="mat-primary"
+      mat-button
+    >
+      {{ link.text | translate }}
+    </a>
+  </mat-list-item>
+</mat-list>
