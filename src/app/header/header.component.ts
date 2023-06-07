@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 
-import { LoginDialogService } from '../login-dialog/login-dialog.service';
-import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { LoginService } from '../login/login.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private unsubscribe = new Subject<void>();
 
-  constructor(private loginService: LoginDialogService,
+  constructor(private loginService: LoginService,
               private dialog: MatDialog) {
   }
 
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onOpenLoginDialog(): void {
-    this.dialog.open(LoginDialogComponent);
+    this.dialog.open(LoginComponent);
   }
 
   onLogout(): void {

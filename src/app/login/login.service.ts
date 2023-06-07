@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import {
   BehaviorSubject,
   catchError,
@@ -11,16 +12,18 @@ import { LoginResponseData } from '../../shared/interfaces/login-response-data';
 import { User } from '../../shared/interfaces/user';
 import { environment } from '../../enviroments/environment';
 import { AUTH_ERROR_MESSAGES } from '../../shared/constants/auth-error-messages';
+import { APP_URLS } from '../../shared/constants/app-urls';
 
 const USER_DATA_KEY = 'udk';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginDialogService {
+export class LoginService {
   public user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
   }
 
   login(email: string, password: string): Observable<LoginResponseData> {
@@ -47,6 +50,7 @@ export class LoginDialogService {
 
   logout(): void {
     this.user.next(null);
+    this.router.navigate([APP_URLS.HOME]);
     localStorage.removeItem(USER_DATA_KEY);
   }
 

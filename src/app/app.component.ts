@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { LoginDialogService } from './login-dialog/login-dialog.service';
+import { LoginService } from './login/login.service';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LANGUAGES } from '../shared/constants/languages';
@@ -12,7 +12,7 @@ import { getLanguageFromStorage } from '../shared/utils/language-storage';
 })
 export class AppComponent implements OnInit {
   constructor(private translate: TranslateService,
-              private loginService: LoginDialogService) {
+              private loginService: LoginService) {
   }
 
   ngOnInit(): void {

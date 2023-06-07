@@ -17,14 +17,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { LanguageSelectorComponent } from './header/language-selector/language-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginDialogComponent,
+    LoginComponent,
     HeaderComponent,
     LanguageSelectorComponent,
   ],
