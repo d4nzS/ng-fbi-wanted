@@ -12,6 +12,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -20,6 +22,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { LanguageSelectorComponent } from './header/language-selector/language-selector.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { LanguageSelectorComponent } from './header/language-selector/language-s
     LoginComponent,
     HeaderComponent,
     LanguageSelectorComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,11 +47,13 @@ import { LanguageSelectorComponent } from './header/language-selector/language-s
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
+    MatSidenavModule,
+    MatListModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (http: HttpClient) =>  new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
         deps: [HttpClient]
       }
     })

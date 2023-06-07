@@ -11,5 +11,7 @@
       "Unknown": "An unknown error occurred."
     }
   },
-  "Language": "Language"
+  "Language": "Language",
+  "Sidebar.HomeLink": "Home",
+  "Sidebar.SettingsLink": "Settings"
 }

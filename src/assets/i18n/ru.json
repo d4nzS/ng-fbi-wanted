@@ -11,5 +11,7 @@
       "Unknown": "Неизвестная ошибка."
     }
   },
-  "Language": "Язык"
+  "Language": "Язык",
+  "Sidebar.HomeLink": "Главная",
+  "Sidebar.SettingsLink": "Настройки"
 }

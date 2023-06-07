@@ -1,0 +1,7 @@
+.layout {
+  min-height: calc(100% - 3.5rem);
+
+  @media (min-width: 599px) {
+    min-height: calc(100% - 4rem);
+  }
+}

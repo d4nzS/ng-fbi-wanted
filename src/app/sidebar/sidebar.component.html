@@ -1,0 +1,29 @@
+<mat-list>
+  <mat-list-item>
+    <a
+      [routerLink]="homeUrl"
+      routerLinkActive="mat-primary"
+      mat-button
+    >
+      {{ 'Sidebar.HomeLink' | translate }}
+    </a>
+  </mat-list-item>
+  <mat-list-item>
+    <a
+      [routerLink]="fbiWantedUrl"
+      routerLinkActive="mat-primary"
+      mat-button
+    >
+      FBI Wanted
+    </a>
+  </mat-list-item>
+  <mat-list-item>
+    <a
+      [routerLink]="settingsUrl"
+      routerLinkActive="mat-primary"
+      mat-button
+    >
+      {{ 'Sidebar.SettingsLink' | translate }}
+    </a>
+  </mat-list-item>
+</mat-list>
