@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FbiWantedPageComponent } from './fbi-wanted-page.component';
+import { FbiWantedComponent } from './fbi-wanted.component';
 
 const routes: Routes = [
-  { path: '', component: FbiWantedPageComponent }
+  { path: '', component: FbiWantedComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FbiWantedPageRoutingModule {
+export class FbiWantedRoutingModule {
 }

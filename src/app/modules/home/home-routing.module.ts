@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SettingsPageComponent } from './settings-page.component';
+import { HomeComponent } from './home.component';
 
 const routes: Routes = [
-  { path: '', component: SettingsPageComponent }
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SettingPageRoutingModule {
+export class HomeRoutingModule {
 }

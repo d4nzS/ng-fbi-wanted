@@ -1,0 +1,10 @@
+<main>
+  <app-fbi-wanted-list [items]="fbiWanted"></app-fbi-wanted-list>
+  <mat-paginator
+    [length]="pages"
+    [pageSize]="ITEMS_PER_PAGE"
+    (page)="onPageChanged($event)"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</main>

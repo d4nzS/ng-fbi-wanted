@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 
-import { LoginService } from '../login/login.service';
+import { LoginService } from '../../core/login.service';
 import { LoginComponent } from '../login/login.component';
 
 @Component({

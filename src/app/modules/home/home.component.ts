@@ -7,17 +7,16 @@ import {
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
-import { LoginService } from '../login/login.service';
+import { LoginService } from '../../core/login.service';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../../components/login/login.component';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomePageComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
 
   private unsubscribe = new Subject<void>();
