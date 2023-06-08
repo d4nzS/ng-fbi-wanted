@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { HomePageRoutingModule } from './home-page-routing.module';
-import { HomePageComponent } from './home-page.component';
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    HomePageComponent
+    HomeComponent
   ],
   imports: [
     MatButtonModule,
-    HomePageRoutingModule,
+    HomeRoutingModule,
     SharedModule
   ]
 })
-export class HomePageModule {
+export class HomeModule {
 }

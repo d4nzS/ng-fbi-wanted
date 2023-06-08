@@ -12,6 +12,15 @@
     }
   },
   "Language": "Язык",
-  "Sidebar.HomeLink": "Главная",
-  "Sidebar.SettingsLink": "Настройки"
+  "Sidebar": {
+    "HomeLink": "Главная",
+    "SettingsLink": "Настройки"
+  },
+  "FbiWanted": {
+    "Published": "Опубликовано",
+    "Height": "Рост",
+    "Weight": "Вес",
+    "Description": "Описание",
+    "Unknown": "неизвестно"
+  }
 }
