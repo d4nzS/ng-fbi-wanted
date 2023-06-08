@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { APP_URLS } from '../../shared/constants/app-urls';
+import { APP_URLS } from '../../../shared/constants/app-urls';
 
 @Component({
   selector: 'app-sidebar',

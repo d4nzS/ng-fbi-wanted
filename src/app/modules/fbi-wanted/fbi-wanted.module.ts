@@ -3,9 +3,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { FbiWantedRoutingModule } from './fbi-wanted-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { FbiWantedComponent } from './fbi-wanted.component';
-import { FbiWantedListComponent } from './fbi-wanted-list/fbi-wanted-list.component';
+import { FbiWantedListComponent } from './components/fbi-wanted-list/fbi-wanted-list.component';
 
 @NgModule({
   declarations: [

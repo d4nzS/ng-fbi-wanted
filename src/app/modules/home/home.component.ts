@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
-import { LoginService } from '../login/login.service';
+import { LoginService } from '../../core/login.service';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../../components/login/login.component';
 
 @Component({
   templateUrl: './home.component.html',

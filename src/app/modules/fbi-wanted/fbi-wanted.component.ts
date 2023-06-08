@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
-import { FbiWantedService } from './fbi-wanted.service';
-import { FbiWanted } from '../../shared/interfaces/fbi-wanted';
+import { FbiWantedService } from '../../core/fbi-wanted.service';
+import { FbiWanted } from '../../../shared/interfaces/fbi-wanted';
 
 @Component({
   templateUrl: './fbi-wanted.component.html',
