@@ -21,6 +21,8 @@
     "Height": "Height",
     "Weight": "Weight",
     "Description": "Description",
-    "Unknown": "unknown"
+    "Unknown": "unknown",
+    "AllLink": "All",
+    "EditLink": "Edit"
   }
 }

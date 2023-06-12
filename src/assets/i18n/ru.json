@@ -21,6 +21,8 @@
     "Height": "Рост",
     "Weight": "Вес",
     "Description": "Описание",
-    "Unknown": "неизвестно"
+    "Unknown": "неизвестно",
+    "AllLink": "Все",
+    "EditLink": "На редактировании"
   }
 }

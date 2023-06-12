@@ -10,15 +10,15 @@ import { APP_URLS } from '../../../shared/constants/app-urls';
 export class SidebarComponent {
   appLinks = [
     {
-      path: APP_URLS.HOME,
+      path: ['/', APP_URLS.HOME],
       text: 'Sidebar.HomeLink'
     },
     {
-      path: APP_URLS.FBI_WANTED,
+      path: ['/', APP_URLS.FBI_WANTED],
       text: 'FBI Wanted'
     },
     {
-      path: APP_URLS.SETTINGS,
+      path: ['/', APP_URLS.SETTINGS],
       text: 'Sidebar.SettingsLink'
     }
   ];
