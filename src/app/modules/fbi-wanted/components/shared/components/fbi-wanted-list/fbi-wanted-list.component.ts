@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { FbiWanted } from '../../../../../shared/interfaces/fbi-wanted';
+import { FbiWanted } from '../../../../../../../shared/interfaces/fbi-wanted';
 
 @Component({
   selector: 'app-fbi-wanted-list',
