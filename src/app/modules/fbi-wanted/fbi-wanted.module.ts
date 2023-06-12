@@ -6,11 +6,13 @@ import { FbiWantedRoutingModule } from './fbi-wanted-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { FbiWantedComponent } from './fbi-wanted.component';
 import { FbiWantedListComponent } from './components/fbi-wanted-list/fbi-wanted-list.component';
+import { DefaultValuePipe } from './pipes/default-value.pipe';
 
 @NgModule({
   declarations: [
     FbiWantedComponent,
-    FbiWantedListComponent
+    FbiWantedListComponent,
+    DefaultValuePipe
   ],
   imports: [
     MatExpansionModule,
