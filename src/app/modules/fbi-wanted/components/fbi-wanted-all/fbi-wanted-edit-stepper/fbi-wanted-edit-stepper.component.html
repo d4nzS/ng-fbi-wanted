@@ -1,9 +1,9 @@
 <mat-stepper [linear]="true">
   <mat-step [stepControl]="editForm">
     <form [formGroup]="editForm">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+      <ng-template matStepLabel>{{ 'FbiWanted.FillMainInfo' | translate }}</ng-template>
       <mat-form-field class="stepper__controller">
-        <mat-label>Name</mat-label>
+        <mat-label>{{ 'FbiWanted.Name' | translate }}</mat-label>
         <input
           formControlName="name"
           placeholder="First name, Last name"
@@ -25,13 +25,16 @@
         >
       </mat-form-field>
         <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>
+          {{ 'FbiWanted.Next' | translate }}
+        </button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>
+      {{ 'FbiWanted.Done' | translate }}
+    </ng-template>
     <div>
       <button
         mat-button
