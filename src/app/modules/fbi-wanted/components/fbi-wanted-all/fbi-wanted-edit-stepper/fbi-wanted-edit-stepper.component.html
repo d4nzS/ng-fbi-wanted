@@ -1,0 +1,41 @@
+<mat-stepper [linear]="true">
+  <mat-step [stepControl]="editForm">
+    <form [formGroup]="editForm">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <mat-form-field class="stepper__controller">
+        <mat-label>Name</mat-label>
+        <input
+          formControlName="name"
+          placeholder="First name, Last name"
+          matInput
+        >
+      </mat-form-field>
+      <mat-form-field class="stepper__controller">
+        <mat-label>Height</mat-label>
+        <input
+          formControlName="height"
+          matInput
+        >
+      </mat-form-field>
+      <mat-form-field class="stepper__controller">
+        <mat-label>Weight</mat-label>
+        <input
+          formControlName="weight"
+          matInput
+        >
+      </mat-form-field>
+        <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button>Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+

@@ -8,6 +8,12 @@
         <mat-panel-description>
           {{ item.description }}
         </mat-panel-description>
+        <button
+          mat-button
+          (click)="onOpenEditDialog($event)"
+        >
+          Edit
+        </button>
       </mat-expansion-panel-header>
       <p>
         {{ 'FbiWanted.Published' | translate }}: {{ item.publication.slice(0, item.publication.indexOf('T')) }}
