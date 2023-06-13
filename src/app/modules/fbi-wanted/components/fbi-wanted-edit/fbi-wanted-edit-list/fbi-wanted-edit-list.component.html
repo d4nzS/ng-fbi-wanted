@@ -1,0 +1,27 @@
+<mat-accordion>
+  <ng-container *ngFor="let item of items; let i = index">
+    <mat-expansion-panel [expanded]="(i === 0 && !selectedId) || item.uid === selectedId">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ item.title }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ item.description }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        {{ 'FbiWanted.Published' | translate }}: {{ item.publication.slice(0, item.publication.indexOf('T')) }}
+      </p>
+      <p>{{ 'FbiWanted.Sex' | translate }}: {{ item.sex | defaultValue | translate }}</p>
+      <p>{{ 'FbiWanted.Height' | translate }}: {{ item.height_min | defaultValue | translate }}</p>
+      <p>{{ 'FbiWanted.Weight' | translate }}: {{ item.weight | defaultValue | translate }}</p>
+      <p>
+        <img
+          [src]="item.images[0].original"
+          alt="Photo"
+          class="item__image"
+        >
+      </p>
+    </mat-expansion-panel>
+  </ng-container>
+</mat-accordion>

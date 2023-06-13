@@ -9,16 +9,26 @@
           {{ item.description }}
         </mat-panel-description>
         <button
+          *ngIf="!checkEditing(item); else linkToEdit"
           mat-button
-          (click)="onOpenEditDialog($event)"
+          (click)="onOpenEditDialog(item)"
         >
-          Edit
+          {{ 'FbiWanted.Edit' | translate }}
         </button>
+        <ng-template #linkToEdit>
+          <a
+            [routerLink]="editLink"
+            [queryParams]="{ selected: item.uid  }"
+          >
+            <mat-icon>edit</mat-icon>
+          </a>
+        </ng-template>
       </mat-expansion-panel-header>
       <p>
         {{ 'FbiWanted.Published' | translate }}: {{ item.publication.slice(0, item.publication.indexOf('T')) }}
       </p>
-      <p>{{ 'FbiWanted.Height' | translate }}: {{ item.weight | defaultValue | translate }}</p>
+      <p>{{ 'FbiWanted.Sex' | translate }}: {{ item.sex | defaultValue | translate }}</p>
+      <p>{{ 'FbiWanted.Height' | translate }}: {{ item.height_min | defaultValue | translate }}</p>
       <p>{{ 'FbiWanted.Weight' | translate }}: {{ item.weight | defaultValue | translate }}</p>
       <p>
         <img

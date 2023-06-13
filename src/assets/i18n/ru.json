@@ -18,11 +18,14 @@
   },
   "FbiWanted": {
     "Published": "Опубликовано",
+    "Sex": "Пол",
     "Height": "Рост",
     "Weight": "Вес",
     "Description": "Описание",
     "Unknown": "неизвестно",
     "AllLink": "Все",
-    "EditLink": "На редактировании"
+    "EditLink": "На редактировании",
+    "Edit": "Редактировать",
+    "Back": "Назад"
   }
 }

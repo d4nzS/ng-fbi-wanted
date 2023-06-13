@@ -19,6 +19,7 @@ export class FbiWantedAllComponent implements OnInit, OnDestroy {
   ITEMS_PER_PAGE = 20;
   pages: number;
   fbiWanted: FbiWanted[] = [];
+  editingFbiWanted = [];
 
   private unsubscribe = new Subject<void>();
 
@@ -28,6 +29,11 @@ export class FbiWantedAllComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadPage(0);
+    this.fbiWantedService.getEditingFbiWanted()
+      .subscribe(resData => {
+        this.changeDetectorRef.markForCheck();
+        this.editingFbiWanted = resData;
+      });
   }
 
   ngOnDestroy(): void {

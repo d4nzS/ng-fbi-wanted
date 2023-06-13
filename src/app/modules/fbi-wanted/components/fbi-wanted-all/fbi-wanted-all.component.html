@@ -1,4 +1,7 @@
-<app-fbi-wanted-list [items]="fbiWanted"></app-fbi-wanted-list>
+<app-fbi-wanted-list
+  [items]="fbiWanted"
+  [editingItems]="editingFbiWanted"
+></app-fbi-wanted-list>
 <mat-paginator
   [length]="pages"
   [pageSize]="ITEMS_PER_PAGE"
@@ -6,4 +9,3 @@
   aria-label="Select page"
 >
 </mat-paginator>
-<router-outlet/>

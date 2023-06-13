@@ -11,14 +11,14 @@
         >
       </mat-form-field>
       <mat-form-field class="stepper__controller">
-        <mat-label>Height</mat-label>
+        <mat-label>{{ 'FbiWanted.Height' | translate }}</mat-label>
         <input
           formControlName="height"
           matInput
         >
       </mat-form-field>
       <mat-form-field class="stepper__controller">
-        <mat-label>Weight</mat-label>
+        <mat-label>{{ 'FbiWanted.Weight' | translate }}</mat-label>
         <input
           formControlName="weight"
           matInput
@@ -33,8 +33,18 @@
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button>Reset</button>
+      <button
+        mat-button
+        matStepperPrevious
+      >
+        {{ 'FbiWanted.Back' | translate }}
+      </button>
+      <button
+        mat-button
+        (click)="onAddToEdit()"
+      >
+        {{ 'FbiWanted.Edit' | translate }}
+      </button>
     </div>
   </mat-step>
 </mat-stepper>
