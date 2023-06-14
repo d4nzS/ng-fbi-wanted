@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { FbiWantedResponseData } from '../../shared/interfaces/fbi-wanted-response-data';
 import { FbiWanted } from '../../shared/interfaces/fbi-wanted';
 import { EditingFbiWantedResponseData } from '../../shared/interfaces/editing-fbi-wanted-response-data';
+import { EditingFbiWanted } from '../../shared/interfaces/editing-fbi-wanted';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +32,10 @@ export class FbiWantedService {
       );
   }
 
-  postEditingFbiWanted(person: object): Observable<void> {
+  postEditingFbiWanted(editingFbiWanted: EditingFbiWanted): Observable<void> {
     return this.http.post<void>(
       'https://ng-fbi-wanted-default-rtdb.europe-west1.firebasedatabase.app/people.json',
-      person
+      editingFbiWanted
     );
   }
 }

@@ -23,25 +23,34 @@ export class FbiWantedEditStepperComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const { title, height_min, weight } = this.data;
+
     this.editForm = new FormGroup({
-      'name': new FormControl(this.data.title, Validators.required),
-      'height': new FormControl(this.data.height_min, Validators.required),
-      'weight': new FormControl(this.data.weight, Validators.required)
+      'name': new FormControl(title, Validators.required),
+      'height': new FormControl(height_min, Validators.required),
+      'weight': new FormControl(weight, Validators.required)
     });
   }
 
   onAddToEdit(): void {
+    const {
+      uid,
+      description,
+      sex,
+      publication,
+      images: [image]
+    } = this.data;
     const { name, height, weight } = this.editForm.value;
 
     this.fbiWantedService.postEditingFbiWanted({
       title: name,
       height_min: height,
       weight,
-      uid: this.data.uid,
-      description: this.data.description,
-      sex: this.data.sex,
-      publication: this.data.publication,
-      images: [this.data.images[0]]
+      uid,
+      description,
+      sex,
+      publication,
+      images: [image]
     }).subscribe(() => {
       this.editDialogRef.close();
       this.router.navigate(['/', APP_URLS.FBI_WANTED, FBI_WANTED_URLS.EDIT])

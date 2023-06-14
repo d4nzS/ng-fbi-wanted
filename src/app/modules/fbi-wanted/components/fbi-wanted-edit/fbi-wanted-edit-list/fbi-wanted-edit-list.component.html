@@ -10,7 +10,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p>
-        {{ 'FbiWanted.Published' | translate }}: {{ item.publication.slice(0, item.publication.indexOf('T')) }}
+        {{ 'FbiWanted.Published' | translate }}: {{ item.publication | date:'dd/MM/yyyy' }}
       </p>
       <p>{{ 'FbiWanted.Sex' | translate }}: {{ item.sex | defaultValue | translate }}</p>
       <p>{{ 'FbiWanted.Height' | translate }}: {{ item.height_min | defaultValue | translate }}</p>
