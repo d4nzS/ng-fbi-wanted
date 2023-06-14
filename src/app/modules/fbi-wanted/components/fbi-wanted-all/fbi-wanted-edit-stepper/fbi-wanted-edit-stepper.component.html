@@ -10,8 +10,12 @@
           matInput
         >
       </mat-form-field>
+      <div class="stepper__controller">
+        <mat-label>{{ 'FbiWanted.Sex' | translate }}</mat-label>
+        <app-fbi-wanted-sex-control formControlName="sex"></app-fbi-wanted-sex-control>
+      </div>
       <mat-form-field class="stepper__controller">
-        <mat-label>{{ 'FbiWanted.Height' | translate }}</mat-label>
+        <mat-label>{{ 'FbiWanted.Height' | translate }}:</mat-label>
         <input
           formControlName="height"
           matInput

@@ -23,24 +23,19 @@ export class FbiWantedEditStepperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const { title, height_min, weight } = this.data;
+    const { title, sex, height_min, weight } = this.data;
 
     this.editForm = new FormGroup({
       'name': new FormControl(title, Validators.required),
+      'sex': new FormControl(sex, Validators.required),
       'height': new FormControl(height_min, Validators.required),
       'weight': new FormControl(weight, Validators.required)
     });
   }
 
   onAddToEdit(): void {
-    const {
-      uid,
-      description,
-      sex,
-      publication,
-      images: [image]
-    } = this.data;
-    const { name, height, weight } = this.editForm.value;
+    const { uid, description, publication, images: [image] } = this.data;
+    const { name, sex, height, weight } = this.editForm.value;
 
     this.fbiWantedService.postEditingFbiWanted({
       title: name,
@@ -54,6 +49,6 @@ export class FbiWantedEditStepperComponent implements OnInit {
     }).subscribe(() => {
       this.editDialogRef.close();
       this.router.navigate(['/', APP_URLS.FBI_WANTED, FBI_WANTED_URLS.EDIT])
-    })
+    });
   }
 }
