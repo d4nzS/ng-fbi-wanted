@@ -1,6 +1,6 @@
 <mat-accordion>
   <ng-container *ngFor="let item of items; let i = index">
-    <mat-expansion-panel [expanded]="i === 0">
+    <mat-expansion-panel [expanded]="(i === 0 && !selectedId) || item.uid === selectedId">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{ item.title }}
@@ -10,9 +10,10 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p>
-        {{ 'FbiWanted.Published' | translate }}: {{ item.publication.slice(0, item.publication.indexOf('T')) }}
+        {{ 'FbiWanted.Published' | translate }}: {{ item.publication | date:'dd/MM/yyyy' }}
       </p>
-      <p>{{ 'FbiWanted.Height' | translate }}: {{ item.weight | defaultValue | translate }}</p>
+      <p>{{ 'FbiWanted.Sex' | translate }}: {{ item.sex | defaultValue | translate }}</p>
+      <p>{{ 'FbiWanted.Height' | translate }}: {{ item.height_min | defaultValue | translate }}</p>
       <p>{{ 'FbiWanted.Weight' | translate }}: {{ item.weight | defaultValue | translate }}</p>
       <p>
         <img

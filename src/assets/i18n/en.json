@@ -18,9 +18,18 @@
   },
   "FbiWanted": {
     "Published": "Published",
+    "Sex": "Sex",
     "Height": "Height",
     "Weight": "Weight",
     "Description": "Description",
-    "Unknown": "unknown"
+    "Unknown": "unknown",
+    "AllLink": "All",
+    "EditLink": "Edit",
+    "Edit": "Edit",
+    "FillMainInfo": "Fill main info",
+    "Done": "Done",
+    "Name": "Name",
+    "Next": "Next",
+    "Back": "Back"
   }
 }

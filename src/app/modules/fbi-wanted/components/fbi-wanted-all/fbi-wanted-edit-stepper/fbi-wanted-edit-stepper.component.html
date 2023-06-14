@@ -1,0 +1,54 @@
+<mat-stepper [linear]="true">
+  <mat-step [stepControl]="editForm">
+    <form [formGroup]="editForm">
+      <ng-template matStepLabel>{{ 'FbiWanted.FillMainInfo' | translate }}</ng-template>
+      <mat-form-field class="stepper__controller">
+        <mat-label>{{ 'FbiWanted.Name' | translate }}</mat-label>
+        <input
+          formControlName="name"
+          placeholder="First name, Last name"
+          matInput
+        >
+      </mat-form-field>
+      <mat-form-field class="stepper__controller">
+        <mat-label>{{ 'FbiWanted.Height' | translate }}</mat-label>
+        <input
+          formControlName="height"
+          matInput
+        >
+      </mat-form-field>
+      <mat-form-field class="stepper__controller">
+        <mat-label>{{ 'FbiWanted.Weight' | translate }}</mat-label>
+        <input
+          formControlName="weight"
+          matInput
+        >
+      </mat-form-field>
+        <div>
+        <button mat-button matStepperNext>
+          {{ 'FbiWanted.Next' | translate }}
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>
+      {{ 'FbiWanted.Done' | translate }}
+    </ng-template>
+    <div>
+      <button
+        mat-button
+        matStepperPrevious
+      >
+        {{ 'FbiWanted.Back' | translate }}
+      </button>
+      <button
+        mat-button
+        (click)="onAddToEdit()"
+      >
+        {{ 'FbiWanted.Edit' | translate }}
+      </button>
+    </div>
+  </mat-step>
+</mat-stepper>
+

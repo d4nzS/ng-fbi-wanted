@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <a
+    *ngFor="let link of fbiWantedLinks"
+    [routerLink]="link.path"
+    mat-button
+    class="navbar__link"
+  >
+    {{ link.text | translate }}
+  </a>
+</mat-toolbar>
