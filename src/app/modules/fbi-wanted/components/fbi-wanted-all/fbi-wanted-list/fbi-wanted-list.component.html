@@ -1,6 +1,6 @@
 <mat-accordion>
-  <ng-container *ngFor="let item of items; let i = index">
-    <mat-expansion-panel [expanded]="i === 0">
+  <ng-container *ngFor="let item of items; first as isFirst">
+    <mat-expansion-panel [expanded]="isFirst">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{ item.title }}
@@ -9,7 +9,7 @@
           {{ item.description }}
         </mat-panel-description>
         <button
-          *ngIf="!checkEditing(item); else linkToEdit"
+          *ngIf="!editingIds.has(item.uid); else linkToEdit"
           mat-button
           (click)="onOpenEditDialog(item)"
         >
@@ -18,7 +18,7 @@
         <ng-template #linkToEdit>
           <a
             [routerLink]="editLink"
-            [queryParams]="{ selected: item.uid  }"
+            [queryParams]="{ selected: item.uid }"
           >
             <mat-icon>edit</mat-icon>
           </a>
