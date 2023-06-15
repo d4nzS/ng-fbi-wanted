@@ -1,5 +1,5 @@
 <mat-accordion>
-  <ng-container *ngFor="let item of items; first as isFirst">
+  <ng-container *ngFor="let item of itemsWithAdditionalInfoInTuple; first as isFirst">
     <mat-expansion-panel [expanded]="(isFirst && !selectedId) || item.uid === selectedId">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -15,6 +15,9 @@
       <p>{{ 'FbiWanted.Sex' | translate }}: {{ item.sex | defaultValue | translate }}</p>
       <p>{{ 'FbiWanted.Height' | translate }}: {{ item.height_min | defaultValue | translate }}</p>
       <p>{{ 'FbiWanted.Weight' | translate }}: {{ item.weight | defaultValue | translate }}</p>
+      <p *ngFor="let characteristic of item.additionalInfo">
+        {{ characteristic[0] }}: {{ characteristic[1] }}
+      </p>
       <p>
         <img
           [src]="item.images[0].original"

@@ -87,8 +87,6 @@ export class FbiWantedEditStepperComponent implements OnInit {
     const { uid, description, publication, images: [image] } = this.data;
     const { name, sex, height, weight, additionalInfo } = this.editForm.value;
 
-    console.log(this.editForm.value);
-
     this.fbiWantedService.postEditingFbiWanted({
       title: name,
       height_min: height,
@@ -97,6 +95,7 @@ export class FbiWantedEditStepperComponent implements OnInit {
       description,
       sex,
       publication,
+      additionalInfo,
       images: [image]
     }).subscribe(() => {
       this.editDialogRef.close();

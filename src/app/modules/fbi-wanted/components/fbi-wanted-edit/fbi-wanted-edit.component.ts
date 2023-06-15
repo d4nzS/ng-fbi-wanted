@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
-import { FbiWanted } from '../../../../../shared/interfaces/fbi-wanted';
+import { EditingFbiWanted } from '../../../../../shared/interfaces/editing-fbi-wanted';
 import { FbiWantedService } from '../../../../core/fbi-wanted.service';
 
 @Component({
@@ -17,7 +17,7 @@ import { FbiWantedService } from '../../../../core/fbi-wanted.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FbiWantedEditComponent implements OnInit, OnDestroy {
-  editingFbiWanted: FbiWanted[] = [];
+  editingFbiWanted: EditingFbiWanted[] = [];
   selectedPersonId: string;
 
   private unsubscribe = new Subject<void>();

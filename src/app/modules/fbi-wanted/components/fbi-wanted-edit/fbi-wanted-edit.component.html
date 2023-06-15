@@ -1,4 +1,5 @@
 <app-fbi-wanted-edit-list
+  *ngIf="editingFbiWanted.length"
   [items]="editingFbiWanted"
   [selectedId]="selectedPersonId"
 ></app-fbi-wanted-edit-list>
