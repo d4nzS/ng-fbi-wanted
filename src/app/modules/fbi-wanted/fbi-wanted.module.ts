@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { FbiWantedRoutingModule } from './fbi-wanted-routing.module';
@@ -51,6 +52,7 @@ import { FbiWantedSexControlComponent } from './components/fbi-wanted-all/fbi-wa
     MatDialogModule,
     MatIconModule,
     MatRadioModule,
+    MatSelectModule,
     FontAwesomeModule,
     FbiWantedRoutingModule,
     SharedModule,

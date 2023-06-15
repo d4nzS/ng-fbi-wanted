@@ -6,4 +6,10 @@
   &__controller {
     width: 100%;
   }
+
+  &__button {
+    cursor: pointer;
+    background: inherit;
+    border: none;
+  }
 }

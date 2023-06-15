@@ -15,7 +15,7 @@
         <app-fbi-wanted-sex-control formControlName="sex"></app-fbi-wanted-sex-control>
       </div>
       <mat-form-field class="stepper__controller">
-        <mat-label>{{ 'FbiWanted.Height' | translate }}:</mat-label>
+        <mat-label>{{ 'FbiWanted.Height' | translate }}</mat-label>
         <input
           formControlName="height"
           matInput
@@ -28,11 +28,59 @@
           matInput
         >
       </mat-form-field>
-        <div>
+      <div>
         <button mat-button matStepperNext>
           {{ 'FbiWanted.Next' | translate }}
         </button>
       </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="editForm">
+    <ng-template matStepLabel>{{ 'FbiWanted.FillAdditionalInfo' | translate }}</ng-template>
+    <form [formGroup]="addCustomControlForm">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          formControlName="name"
+          matInput
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option
+            *ngFor="let type of additionalControlTypes"
+            [value]="type.value"
+          >
+            {{type.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        [disabled]="this.addCustomControlForm.invalid"
+        class="stepper__button"
+        (click)="onAddCustomControl()"
+      >
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+    </form>
+    <form [formGroup]="editForm">
+      <ng-container formGroupName="additionalInfo">
+        <mat-form-field
+          *ngFor="let control of additionalControls"
+          class="stepper__controller"
+        >
+          <mat-label>{{ control.name }}</mat-label>
+          <input
+            [type]="control.type"
+            [formControlName]="control.name"
+            matInput
+          >
+        </mat-form-field>
+      </ng-container>
+      <button mat-button matStepperNext>
+        {{ 'FbiWanted.Next' | translate }}
+      </button>
     </form>
   </mat-step>
   <mat-step>

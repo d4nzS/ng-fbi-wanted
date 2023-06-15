@@ -19,10 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule),
     canActivate: [LoginGuardService]
   },
-  // {
-  //   path: '**',
-  //   redirectTo: APP_URLS.HOME
-  // }
+  {
+    path: '**',
+    redirectTo: APP_URLS.HOME
+  }
 ];
 
 @NgModule({
