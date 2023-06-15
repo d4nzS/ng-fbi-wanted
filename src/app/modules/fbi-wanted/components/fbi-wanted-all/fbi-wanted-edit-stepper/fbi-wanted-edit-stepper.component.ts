@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/cor
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 
 import { FbiWantedService } from '../../../../../core/fbi-wanted.service';
 import { FbiWanted } from '../../../../../../shared/interfaces/fbi-wanted';
 import { FBI_WANTED_URLS } from '../../../shared/constants/fbi-wanted-urls';
 import { APP_URLS } from '../../../../../../shared/constants/app-urls';
 
-type ControlType = 'text' | 'number' | 'radio' | 'date';
+type ControlType = 'text' | 'number' | 'date';
 
 interface AdditionalControl {
   name: string;
@@ -25,14 +25,16 @@ interface AdditionalControl {
 })
 export class FbiWantedEditStepperComponent implements OnInit {
   faPlus = faPlus;
+  faPen = faPen;
+  faTrash = faTrash;
   forbiddenAdditionalControlNames = ['title', 'height_min', 'weight', 'uid', 'description', 'sex', 'publication', 'images']
   additionalControlTypes = [
     { value: 'text', text: 'String' },
     { value: 'number', text: 'Number' },
-    { value: 'radio', text: 'Boolean' },
     { value: 'date', text: 'Date' }
   ];
   additionalControls: AdditionalControl[] = [];
+  isEditCustomControlMode = false;
   editForm: FormGroup;
   addCustomControlForm: FormGroup;
 
@@ -76,7 +78,25 @@ export class FbiWantedEditStepperComponent implements OnInit {
     });
     this.forbiddenAdditionalControlNames.push(name);
 
+    this.isEditCustomControlMode = false;
     this.addCustomControlForm.reset();
+  }
+
+  onStartEditCustomControl(name: string): void {
+    const controlType = this.additionalControls.find(item => item.name === name).type;
+
+    this.onRemoveCustomControl(name);
+    this.addCustomControlForm.patchValue({
+      name,
+      type: controlType
+    });
+    this.isEditCustomControlMode = true;
+  }
+
+  onRemoveCustomControl(name: string): void {
+    (<FormGroup>this.editForm.controls['additionalInfo']).removeControl(name);
+    this.additionalControls.splice(this.additionalControls.findIndex(item => item.name === name), 1);
+    this.forbiddenAdditionalControlNames.splice(this.forbiddenAdditionalControlNames.indexOf(name), 1);
   }
 
   onAddToEdit(): void {

@@ -38,6 +38,7 @@
   <mat-step [stepControl]="editForm">
     <ng-template matStepLabel>{{ 'FbiWanted.FillAdditionalInfo' | translate }}</ng-template>
     <form [formGroup]="addCustomControlForm">
+      <h2>{{ isEditCustomControlMode ? 'Edit' : 'Add' }} Custom Control</h2>
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input
@@ -61,7 +62,13 @@
         class="stepper__button"
         (click)="onAddCustomControl()"
       >
-        <fa-icon [icon]="faPlus"></fa-icon>
+        <fa-icon
+          *ngIf="!isEditCustomControlMode; else editIcon"
+          [icon]="faPlus"
+        ></fa-icon>
+        <ng-template #editIcon>
+          <fa-icon [icon]="faPen"></fa-icon>
+        </ng-template>
       </button>
     </form>
     <form [formGroup]="editForm">
@@ -71,11 +78,25 @@
           class="stepper__controller"
         >
           <mat-label>{{ control.name }}</mat-label>
-          <input
-            [type]="control.type"
-            [formControlName]="control.name"
-            matInput
-          >
+          <div class="stepper__input-wrapper">
+            <input
+              [type]="control.type"
+              [formControlName]="control.name"
+              matInput
+            >
+            <button
+              class="stepper__button"
+              (click)="onStartEditCustomControl(control.name)"
+            >
+              <fa-icon [icon]="faPen"></fa-icon>
+            </button>
+            <button
+              class="stepper__button"
+              (click)="onRemoveCustomControl(control.name)"
+            >
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </div>
         </mat-form-field>
       </ng-container>
       <button mat-button matStepperNext>

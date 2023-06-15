@@ -7,6 +7,11 @@
     width: 100%;
   }
 
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   &__button {
     cursor: pointer;
     background: inherit;
