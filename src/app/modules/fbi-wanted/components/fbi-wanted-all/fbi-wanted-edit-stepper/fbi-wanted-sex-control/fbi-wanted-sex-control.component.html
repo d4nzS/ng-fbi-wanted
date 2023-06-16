@@ -1,4 +1,7 @@
-<mat-radio-group [(ngModel)]="value" (change)="change($event.value)">
+<mat-radio-group
+  [(ngModel)]="innerValue"
+  (change)="change($event.value)"
+>
   <mat-radio-button
     *ngFor="let btnInfo of radioButtonsInfo"
     [value]="btnInfo.value"

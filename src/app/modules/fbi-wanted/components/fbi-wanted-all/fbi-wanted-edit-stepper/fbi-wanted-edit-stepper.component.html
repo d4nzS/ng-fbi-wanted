@@ -74,25 +74,25 @@
     <form [formGroup]="editForm">
       <ng-container formGroupName="additionalInfo">
         <mat-form-field
-          *ngFor="let control of additionalControls"
+          *ngFor="let control of additionalControls | keyvalue"
           class="stepper__controller"
         >
-          <mat-label>{{ control.name }}</mat-label>
+          <mat-label>{{ control.key }}</mat-label>
           <div class="stepper__input-wrapper">
             <input
-              [type]="control.type"
-              [formControlName]="control.name"
+              [type]="control.value.type"
+              [formControlName]="control.key"
               matInput
             >
             <button
               class="stepper__button"
-              (click)="onStartEditCustomControl(control.name)"
+              (click)="onStartEditCustomControl(control.key)"
             >
               <fa-icon [icon]="faPen"></fa-icon>
             </button>
             <button
               class="stepper__button"
-              (click)="onRemoveCustomControl(control.name)"
+              (click)="onRemoveCustomControl(control.key)"
             >
               <fa-icon [icon]="faTrash"></fa-icon>
             </button>

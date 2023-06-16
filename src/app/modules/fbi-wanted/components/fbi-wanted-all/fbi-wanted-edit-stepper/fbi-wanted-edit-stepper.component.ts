@@ -12,7 +12,6 @@ import { APP_URLS } from '../../../../../../shared/constants/app-urls';
 type ControlType = 'text' | 'number' | 'date';
 
 interface AdditionalControl {
-  name: string;
   type: ControlType,
   control: FormControl
 }
@@ -27,13 +26,22 @@ export class FbiWantedEditStepperComponent implements OnInit {
   faPlus = faPlus;
   faPen = faPen;
   faTrash = faTrash;
-  forbiddenAdditionalControlNames = ['title', 'height_min', 'weight', 'uid', 'description', 'sex', 'publication', 'images']
+  forbiddenAdditionalControlNames = new Set([
+    'title',
+    'height_min',
+    'weight',
+    'uid',
+    'description',
+    'sex',
+    'publication',
+    'images'
+  ]);
   additionalControlTypes = [
     { value: 'text', text: 'String' },
     { value: 'number', text: 'Number' },
     { value: 'date', text: 'Date' }
   ];
-  additionalControls: AdditionalControl[] = [];
+  additionalControls = new Map<string, AdditionalControl>();
   isEditCustomControlMode = false;
   editForm: FormGroup;
   addCustomControlForm: FormGroup;
@@ -70,20 +78,16 @@ export class FbiWantedEditStepperComponent implements OnInit {
 
     const newControl = new FormControl(null, Validators.required);
 
-    (<FormGroup>this.editForm.controls['additionalInfo']).addControl(name, newControl);
-    this.additionalControls.push({
-      name,
-      type,
-      control: newControl
-    });
-    this.forbiddenAdditionalControlNames.push(name);
+    (<FormGroup>this.editForm.get('additionalInfo')).addControl(name, newControl);
+    this.additionalControls.set(name, { type, control: newControl });
+    this.forbiddenAdditionalControlNames.add(name);
 
     this.isEditCustomControlMode = false;
     this.addCustomControlForm.reset();
   }
 
   onStartEditCustomControl(name: string): void {
-    const controlType = this.additionalControls.find(item => item.name === name).type;
+    const controlType = this.additionalControls.get(name).type;
 
     this.onRemoveCustomControl(name);
     this.addCustomControlForm.patchValue({
@@ -94,9 +98,9 @@ export class FbiWantedEditStepperComponent implements OnInit {
   }
 
   onRemoveCustomControl(name: string): void {
-    (<FormGroup>this.editForm.controls['additionalInfo']).removeControl(name);
-    this.additionalControls.splice(this.additionalControls.findIndex(item => item.name === name), 1);
-    this.forbiddenAdditionalControlNames.splice(this.forbiddenAdditionalControlNames.indexOf(name), 1);
+    (<FormGroup>this.editForm.get('additionalInfo')).removeControl(name);
+    this.additionalControls.delete(name);
+    this.forbiddenAdditionalControlNames.delete(name);
   }
 
   onAddToEdit(): void {
@@ -124,7 +128,7 @@ export class FbiWantedEditStepperComponent implements OnInit {
   }
 
   forbiddenNamesValidator(control: FormControl): { [key: string]: true } | null {
-    return this.forbiddenAdditionalControlNames.includes(control.value)
+    return this.forbiddenAdditionalControlNames.has(control.value)
       ? { nameIsForbidden: true }
       : null;
   }

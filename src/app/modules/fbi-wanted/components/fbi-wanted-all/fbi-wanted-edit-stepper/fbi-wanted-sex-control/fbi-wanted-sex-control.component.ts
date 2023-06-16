@@ -18,33 +18,18 @@ import { faFemale, faMale } from '@fortawesome/free-solid-svg-icons';
 export class FbiWantedSexControlComponent implements ControlValueAccessor {
   faMale = faMale;
   faFemale = faFemale;
-
   radioButtonsInfo = [
     { value: 'Male', icon: faMale },
     { value: 'Female', icon: faFemale }
   ];
-
-  private innerValue: string;
-
-  get value(): string {
-    return this.innerValue;
-  }
-
-  set value(v: string) {
-    if (v !== this.innerValue) {
-      this.innerValue = v;
-      this.change(v);
-    }
-  }
+  innerValue: string;
 
   onChange: Function;
 
   onTouched: Function;
 
   writeValue(value: string): void {
-    if (value !== this.innerValue) {
-      this.innerValue = value;
-    }
+    this.innerValue = value;
   }
 
   registerOnChange(fn: Function): void {
@@ -52,7 +37,7 @@ export class FbiWantedSexControlComponent implements ControlValueAccessor {
   }
 
   registerOnTouched(fn: Function): void {
-    this.onTouched = fn
+    this.onTouched = fn;
   }
 
   change(value): void {
