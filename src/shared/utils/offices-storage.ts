@@ -1,4 +1,4 @@
-const OFFICES_KEY = 'field_offices';
+export const OFFICES_KEY = 'field_offices';
 
 export function getOfficesFromStorage(): string | null {
   return localStorage.getItem(OFFICES_KEY);
