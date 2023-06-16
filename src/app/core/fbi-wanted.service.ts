@@ -3,16 +3,19 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 import { FbiWantedResponseData } from '../../shared/interfaces/fbi-wanted-response-data';
-import { FbiWanted } from '../../shared/interfaces/fbi-wanted';
 import { EditingFbiWantedResponseData } from '../../shared/interfaces/editing-fbi-wanted-response-data';
 import { EditingFbiWanted } from '../../shared/interfaces/editing-fbi-wanted';
+import { getOfficesFromStorage, saveOfficesToStorage } from '../../shared/utils/offices-storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FbiWantedService {
+  offices = getOfficesFromStorage() ?? '';
+
   constructor(private http: HttpClient) {
   }
+
 
   getFbiWanted(page: number): Observable<FbiWantedResponseData> {
     return this.http.get<FbiWantedResponseData>(
@@ -37,5 +40,10 @@ export class FbiWantedService {
       'https://ng-fbi-wanted-default-rtdb.europe-west1.firebasedatabase.app/people.json',
       editingFbiWanted
     );
+  }
+
+  changeOffices(newOffices: string): void {
+    this.offices = newOffices;
+    saveOfficesToStorage(newOffices);
   }
 }
