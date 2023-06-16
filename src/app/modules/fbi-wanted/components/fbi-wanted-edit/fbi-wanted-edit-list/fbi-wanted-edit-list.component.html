@@ -1,6 +1,6 @@
 <mat-accordion>
-  <ng-container *ngFor="let item of items; let i = index">
-    <mat-expansion-panel [expanded]="(i === 0 && !selectedId) || item.uid === selectedId">
+  <ng-container *ngFor="let item of items; first as isFirst">
+    <mat-expansion-panel [expanded]="(isFirst && !selectedId) || item.uid === selectedId">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{ item.title }}
@@ -15,6 +15,9 @@
       <p>{{ 'FbiWanted.Sex' | translate }}: {{ item.sex | defaultValue | translate }}</p>
       <p>{{ 'FbiWanted.Height' | translate }}: {{ item.height_min | defaultValue | translate }}</p>
       <p>{{ 'FbiWanted.Weight' | translate }}: {{ item.weight | defaultValue | translate }}</p>
+      <p *ngFor="let characteristic of item.additionalInfo | keyvalue">
+        {{ characteristic.key }}: {{ characteristic.value }}
+      </p>
       <p>
         <img
           [src]="item.images[0].original"

@@ -23,8 +23,8 @@ export class FbiWantedService {
     );
   }
 
-  getEditingFbiWanted(): Observable<FbiWanted[]> {
-    return this.http.get('https://ng-fbi-wanted-default-rtdb.europe-west1.firebasedatabase.app/people.json')
+  getEditingFbiWanted(): Observable<EditingFbiWanted[]> {
+    return this.http.get<EditingFbiWantedResponseData>('https://ng-fbi-wanted-default-rtdb.europe-west1.firebasedatabase.app/people.json')
       .pipe(
         map(
           (resData: EditingFbiWantedResponseData) => Object.entries(resData).map(([_, value]) => value)

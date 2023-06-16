@@ -10,6 +10,10 @@
           matInput
         >
       </mat-form-field>
+      <div class="stepper__controller">
+        <mat-label>{{ 'FbiWanted.Sex' | translate }}</mat-label>
+        <app-fbi-wanted-sex-control formControlName="sex"></app-fbi-wanted-sex-control>
+      </div>
       <mat-form-field class="stepper__controller">
         <mat-label>{{ 'FbiWanted.Height' | translate }}</mat-label>
         <input
@@ -24,11 +28,80 @@
           matInput
         >
       </mat-form-field>
-        <div>
+      <div>
         <button mat-button matStepperNext>
           {{ 'FbiWanted.Next' | translate }}
         </button>
       </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="editForm">
+    <ng-template matStepLabel>{{ 'FbiWanted.FillAdditionalInfo' | translate }}</ng-template>
+    <form [formGroup]="addCustomControlForm">
+      <h2>{{ isEditCustomControlMode ? 'Edit' : 'Add' }} Custom Control</h2>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          formControlName="name"
+          matInput
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option
+            *ngFor="let type of additionalControlTypes"
+            [value]="type.value"
+          >
+            {{type.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        [disabled]="this.addCustomControlForm.invalid"
+        class="stepper__button"
+        (click)="onAddCustomControl()"
+      >
+        <fa-icon
+          *ngIf="!isEditCustomControlMode; else editIcon"
+          [icon]="faPlus"
+        ></fa-icon>
+        <ng-template #editIcon>
+          <fa-icon [icon]="faPen"></fa-icon>
+        </ng-template>
+      </button>
+    </form>
+    <form [formGroup]="editForm">
+      <ng-container formGroupName="additionalInfo">
+        <mat-form-field
+          *ngFor="let control of additionalControls | keyvalue"
+          class="stepper__controller"
+        >
+          <mat-label>{{ control.key }}</mat-label>
+          <div class="stepper__input-wrapper">
+            <input
+              [type]="control.value.type"
+              [formControlName]="control.key"
+              matInput
+            >
+            <button
+              class="stepper__button"
+              (click)="onStartEditCustomControl(control.key)"
+            >
+              <fa-icon [icon]="faPen"></fa-icon>
+            </button>
+            <button
+              class="stepper__button"
+              (click)="onRemoveCustomControl(control.key)"
+            >
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </div>
+        </mat-form-field>
+      </ng-container>
+      <button mat-button matStepperNext>
+        {{ 'FbiWanted.Next' | translate }}
+      </button>
     </form>
   </mat-step>
   <mat-step>

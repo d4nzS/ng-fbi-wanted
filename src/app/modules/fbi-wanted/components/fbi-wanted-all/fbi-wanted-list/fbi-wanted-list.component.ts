@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { FbiWanted } from '../../../../../../shared/interfaces/fbi-wanted';
@@ -11,13 +16,18 @@ import { FBI_WANTED_URLS } from '../../../shared/constants/fbi-wanted-urls';
   styleUrls: ['./fbi-wanted-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FbiWantedListComponent {
+export class FbiWantedListComponent implements OnInit {
   @Input() items: FbiWanted[];
   @Input() editingItems: FbiWanted[];
 
   editLink = FBI_WANTED_URLS.EDIT;
+  editingIds: Set<string>;
 
   constructor(private dialog: MatDialog) {
+  }
+
+  ngOnInit(): void {
+    this.editingIds = new Set(this.editingItems.map(editingItem => editingItem.uid));
   }
 
   checkEditing(item: FbiWanted): boolean {
