@@ -26,6 +26,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LanguageSelectorComponent } from './components/header/language-selector/language-selector.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FbiWantedInterceptorService } from './core/fbi-wanted-interceptor.service';
+import { FbiWantedCacheInterceptorService } from './core/fbi-wanted-cache-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,11 @@ import { FbiWantedInterceptorService } from './core/fbi-wanted-interceptor.servi
     {
       provide: HTTP_INTERCEPTORS,
       useClass: FbiWantedInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FbiWantedCacheInterceptorService,
       multi: true
     }
   ],
