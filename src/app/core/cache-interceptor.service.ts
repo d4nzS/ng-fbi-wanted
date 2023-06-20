@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  HttpContextToken,
   HttpEvent,
   HttpEventType,
   HttpHandler,
@@ -14,13 +15,15 @@ interface CachedResponse {
   response: HttpResponse<any>;
 }
 
+export const IS_CACHE_ENABLED = new HttpContextToken<boolean>(() => false);
+
 @Injectable()
-export class FbiWantedCacheInterceptorService implements HttpInterceptor {
+export class CacheInterceptorService implements HttpInterceptor {
   private cache = new Map<string, CachedResponse>();
   private cacheDurationInMilliseconds = 3_600_000;
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.method !== 'GET' || !req.url.includes('api.fbi.gov')) {
+    if (req.method !== 'GET' || !req.context.get(IS_CACHE_ENABLED)) {
       return next.handle(req);
     }
 

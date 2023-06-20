@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 import { FbiWantedResponseData } from '../../shared/interfaces/fbi-wanted-response-data';
 import { EditingFbiWantedResponseData } from '../../shared/interfaces/editing-fbi-wanted-response-data';
 import { EditingFbiWanted } from '../../shared/interfaces/editing-fbi-wanted';
 import { getOfficesFromStorage, saveOfficesToStorage } from '../../shared/utils/offices-storage';
+import { IS_CACHE_ENABLED } from './cache-interceptor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class FbiWantedService {
     return this.http.get<FbiWantedResponseData>(
       'https://api.fbi.gov/wanted/v1/list',
       {
+        context: new HttpContext().set(IS_CACHE_ENABLED, true),
         params: new HttpParams().set('page', page)
       }
     );
