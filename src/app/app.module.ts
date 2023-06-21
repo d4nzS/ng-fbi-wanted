@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -16,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -24,7 +25,8 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LanguageSelectorComponent } from './components/header/language-selector/language-selector.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FbiWantedInterceptorService } from './core/fbi-wanted-interceptor.service';
+import { CacheInterceptorService } from './core/cache-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatSelectModule,
     MatSidenavModule,
     MatListModule,
+    FontAwesomeModule,
     AppRoutingModule,
     SharedModule,
     TranslateModule.forRoot({
@@ -59,9 +62,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         deps: [HttpClient]
       }
     }),
-    FontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FbiWantedInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

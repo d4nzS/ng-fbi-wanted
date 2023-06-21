@@ -1,1 +1,5 @@
-<p>settings-page works!</p>
+<mat-form-field class="example-full-width">
+  <mat-label>Offices</mat-label>
+  <input [(ngModel)]="offices" matInput>
+</mat-form-field>
+<button mat-button (click)="onChangeOffices()">Save</button>
