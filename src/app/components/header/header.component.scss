@@ -1,3 +1,9 @@
-.header__spacing {
-  flex: 1 1 auto;
+.header {
+  &__spacing {
+    flex: 1 1 auto;
+  }
+
+  &__switch-sidebar-btn {
+    cursor: pointer;
+  }
 }

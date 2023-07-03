@@ -1,6 +1,11 @@
 <header>
   <mat-toolbar color="primary">
-    <span>FBI Wanted</span>
+    <span
+      class="header__switch-sidebar-btn"
+      (click)="onSwitchSidebarVisibility()"
+    >
+      FBI Wanted
+    </span>
     <span class="header__spacing"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>

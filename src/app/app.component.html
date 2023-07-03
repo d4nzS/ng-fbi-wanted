@@ -1,9 +1,10 @@
-<app-header></app-header>
+<app-header (switchSidebarVisibility)="onSwitchSidebarVisibility()"></app-header>
 <mat-drawer-container class="layout">
   <mat-drawer
     *ngIf="isAuthenticated"
-    mode="side"
-    opened
+    mode="over"
+    [opened]="isSidebarVisible"
+    (openedChange)="isSidebarVisible = $event"
   >
     <app-sidebar></app-sidebar>
   </mat-drawer>
