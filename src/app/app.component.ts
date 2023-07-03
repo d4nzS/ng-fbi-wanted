@@ -20,6 +20,7 @@ import { getLanguageFromStorage } from '../shared/utils/language-storage';
 })
 export class AppComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
+  isSidebarVisible = true;
 
   private unsubscribe = new Subject<void>();
   constructor(private translate: TranslateService,
@@ -43,8 +44,12 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  onSwitchSidebarVisibility(): void {
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -12,6 +12,8 @@ import { LoginComponent } from '../login/login.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Output() switchSidebarVisibility = new EventEmitter<void>();
+
   isAuthenticated = false;
   userEmail: string;
 
@@ -45,5 +47,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout(): void {
     this.loginService.logout();
+  }
+
+  onSwitchSidebarVisibility(): void {
+    console.log('click')
+
+    this.switchSidebarVisibility.next();
   }
 }
